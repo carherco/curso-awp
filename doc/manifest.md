@@ -33,7 +33,7 @@ Para incluir un manifest en nuestra web basta con incluir en el head de nuestro 
 <link rel="manifest" href="manifest.webmanifest">
 ```
 
-## Propiedades del archivo manifest
+## Propiedades del archivo manifest
 
 Veamos un ejemplo más elaborado
 
@@ -84,7 +84,7 @@ Veamos un ejemplo más elaborado
 }
 ```
 
-### lang
+### lang
 
 El lang en el que están escritos los valores de las propiedades del manifest.
 
@@ -110,7 +110,7 @@ El scope de nuestra aplicación.
 
 El scope por defecto se calcula a partir de la start_url quitando el archivo, la query y el fragment.
 
-### icons
+### icons
 
 Lista de iconos de la aplicación. 
 
@@ -149,7 +149,7 @@ Hay 4 valores posibles a día de hoy:
 
 https://www.w3.org/TR/appmanifest/#dfn-display-modes-values
 
-### orientation
+### orientation
 
 Los valores posibles son:
 
@@ -332,6 +332,6 @@ if(promptEvent !== undefined) {
 - Con herramientas de desarrollo de los navegadores
 
 
-## Desinstalación de la app
+## Desinstalación de la app
 
 Los dispositivos deben proporcionar al usuario un método para desinstalar la app.
