@@ -271,30 +271,13 @@ https://www.globalratings.com/for-developers.aspx
 
 ## Install Prompt (Baner de instalación)
 
-¿¿¿No podemos elegir cuándo se mostrará al usuario.???
-Necesitamos cumplir una serie de requisitos
+No podemos elegir cuándo se mostrará al usuario.
 
-There are multiple ways that the installation process can be triggered:
-
-- An end-user can manually trigger the installation process through the user agent's UI.
-- The installation process can occur through an automated install prompt: that is, a UI that the user agent presents to the user when, for instance, there are sufficient installability signals to warrant installation of the web application.
-The installation process can occur through a site-triggered install prompt: the site can programmatically request that the user agent present an install prompt to the user. The user agent MAY restrict the availability of this feature to cases where, for instance, there are sufficient installability signals to warrant installation of the web application.
-
-Examples of installability signals for a web application:
-
-is associated with a manifest with at least a name member and a suitable icon.
-is served over a secure network connection.
-has a sensible content security policy.
-is able to responsively adapt to display on a variety of screen sizes, catering for both mobile and desktop.
-is able to function without a network connection.
-is repeatedly used by the end-user over some extended period of time.
-has been explicitly marked by the user as one that they value and trust (e.g., by bookmarking or "starring" it).
-
-CADA NAVEGADOR TIENE SUS PROPIAS NORMAS
+Necesitamos cumplir una serie de requisitos. CADA NAVEGADOR TIENE SUS PROPIAS NORMAS
 
 Google Chrome: https://developers.google.com/web/fundamentals/app-install-banners/
 
-Es como un acceso directo. NO hay descarga de la aplicación.
+Al instalar la app, es como un acceso directo.
 
 
 ## Eventos
