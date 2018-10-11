@@ -2,7 +2,7 @@
 
 - [Introducción](introduccion.md)
 - [El archivo manifest](manifest.md)
-3) Service Workers
+- [Service Workers](manifest.md)
 4) Funcionamiento offline
 5) Patrones de cacheo
 
@@ -18,9 +18,11 @@ Características de las AWP
 Diferencias entre las AWP y las Aplicaciones Híbridas
 
 Cómo implementar AWP
-Services Workers (2.5h)
-Patrón AppShell (1.5h)
 Manifiesto de aplicación (0.5h)
+Services Workers (2.5h)
+
+
+Patrón AppShell (1.5h)
 Herramienta de auditoría Lighthouse de Google (1h)
 
 Ejercicio final (1.5h - 2h)
