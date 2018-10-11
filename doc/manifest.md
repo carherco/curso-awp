@@ -269,7 +269,7 @@ string que representa el código de certificación IARC International Age Rating
 https://www.globalratings.com/for-developers.aspx
 
 
-## Install Prompt (Baner de instalación)
+## Install Prompt (Baner de instalación)
 
 No podemos elegir cuándo se mostrará al usuario.
 
