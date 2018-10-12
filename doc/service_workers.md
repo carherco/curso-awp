@@ -103,8 +103,9 @@ Url de registro: /sw-test/sw.js
 
 Para sacar máximo partido de los service workers debemos conocer las siguientes apis de javascript:
 
-- Api Fetch
-- Api Cache
+- [Api Promises](https://github.com/carherco/curso-promesas)
+- [Api Fetch](./api_fetch.md)
+- [Api Cache](api_cache.md)
 
 ### Responder a una petición interceptada
 

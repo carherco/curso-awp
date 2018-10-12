@@ -80,7 +80,7 @@ Veamos un ejemplo más elaborado
     "url": "url/a/la/app",
     "id": "es.carherco.pwa"
   }],
-  "prefer_related_applications": true,
+  "prefer_related_applications": true
 }
 ```
 

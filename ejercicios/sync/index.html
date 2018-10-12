@@ -15,19 +15,34 @@
 
     <link rel="manifest" href="manifest.webmanifest?v=1" />
    
-    <script src="app.js?v=2"></script>
+    <script src="app.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
     
-    <title>AWP</title>
+    <title>AWP - Ejercicio Sync</title>
   </head>
   <body>
     <div class="container">
       
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">AWP</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
+      <ul class="contact-messages">
+          <li>Hola</li>
+          <li>¿Qué tal?</li>
+          <li>¿Quedamos esta noche?</li>
+      </ul>
+        
+
+      <form action="/messages" method="POST" class="js-background-sync">
+        
+        <div>
+          <label for="body">Message</label>
+          <textarea rows="2" id="body" name="body"></textarea>
+        </div>
+        <div>
+          <button>
+            Send
+          </button>
+        </div>
+      </form>
+
 
     </div>
     
