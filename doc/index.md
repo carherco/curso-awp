@@ -16,6 +16,7 @@ Apis involucradas:
 - [Promises/A+](https://github.com/carherco/curso-promesas)
 - [Api Fetch](./api_fetch.md)
 - [Api Cache](api_cache.md)
+- [Battery Status](https://w3c.github.io/battery/)
 
 CURSO DE APLICACIONES WEB PROGRESIVAS
 

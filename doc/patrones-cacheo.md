@@ -21,6 +21,8 @@ event.respondWith(
 
 Este patrón se puede utilizar, por ejemplo, en situaciones de nivel crítico de batería.
 
+Battery Status API: https://w3c.github.io/battery/
+
 ```javascript
 event.respondWith(
 	caches.match(event.request)
