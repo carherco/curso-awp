@@ -6,7 +6,7 @@ Google: https://developers.google.com/web/progressive-web-apps/
 Wikipedia: https://en.wikipedia.org/wiki/Progressive_Web_Apps
 
 
-## Apps vs. Sites
+## Apps vs. Sites
 
 Sites:
 
@@ -33,7 +33,7 @@ Las Aplicaciones Web Progresivas unifican las ventajas de las Webs y de las Apps
 Los estándares alrededor de las AWP son muy recientes, en su mayoría todavía *living standards* y hay que prestar atención al soporte que tiene cada navegador sobre las características que veremos durante el curso.
 
 
-## APPs Híbridas
+## APPs Híbridas
 
 No hay que confundir las AWP con APPs híbridas.
 

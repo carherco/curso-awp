@@ -150,5 +150,5 @@ fetch('https://example.com/profile/avatar', {
 ```
 
 
-## PRECAUCIÓN: El cuerpo de las solicitudes y respuestas es de un solo uso
+## PRECAUCIÓN: El cuerpo de las solicitudes y respuestas es de un solo uso
 

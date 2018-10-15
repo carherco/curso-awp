@@ -61,7 +61,7 @@ Si el fichero descargado es nuevo, se instala.
 
 Una vez instalado, se activa. Si había otro service worker activo, el nuevo debe esperar hasta que deje de haber páginas que utilicen el service worker antiguo. 
 
-## Eventos
+## Eventos
 
 - install: se produce justo antes de que el SW termine de instalarse
 - activate: se produce justo antes de que el SW termine de activarse
@@ -119,7 +119,7 @@ Para sacar máximo partido de los service workers debemos conocer las siguientes
 - [Api Fetch](./api_fetch.md)
 - [Api Cache](api_cache.md)
 
-### Responder a una petición interceptada
+### Responder a una petición interceptada
 
 ```javascript
 this.addEventListener('fetch', function(event) {
@@ -128,7 +128,7 @@ this.addEventListener('fetch', function(event) {
 });
 ```
 
-### Dar una respuesta cuando no hay red
+### Dar una respuesta cuando no hay red
 
 ```javascript
 this.addEventListener('fetch', function(event) {
@@ -222,7 +222,7 @@ this.addEventListener('fetch', function(event) {
 ```
 
 
-### Actualizar nuestro service worker
+### Actualizar nuestro service worker
 
 ```javascript
 this.addEventListener('install', function(event) {

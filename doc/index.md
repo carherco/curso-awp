@@ -4,7 +4,7 @@
 
 - [Introducción](introduccion.md)
 - [El archivo manifest](manifest.md)
-- [Service Workers](manifest.md)
+- [Service Workers](service_workers.md)
     - [Funcionamiento offline](offline.md)
     - [Patrones de cacheo](patrones_cacheo.md)
     - [Notificaciones](notificaciones.md)
