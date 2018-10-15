@@ -3,6 +3,8 @@
 https://github.com/WICG/BackgroundSync/blob/master/explainer.md
 https://ponyfoo.com/articles/backgroundsync
 
+La sinconización es un proceso que se registra en el javascript "normal".
+
 En app.js
 
 ```javascript
@@ -15,9 +17,9 @@ navigator.serviceWorker.ready.then(function(registration) {
 });
 ```
 
-sync will fire when the user agent believes the user has connectivity.
+Una vez registrado, CADA vez que el navegador crea que ha recuperado la conexión, disparará el evento **sync** del entorno de los service worker.
 
-En el service worker
+En el service worker:
 
 ```javascript
 self.addEventListener('sync', function(event) {
@@ -26,10 +28,6 @@ self.addEventListener('sync', function(event) {
   }
 });
 ```
-
-The promise passed to waitUntil is a signal to the user agent that the sync event is ongoing and that it should keep the service worker alive if possible. Rejection of the event signals to the user agent that the sync failed. Upon rejection the user agent should reschedule (likely with a user agent determined backoff).
-
-The user agent may coalesce synchronizations to reduce the number of times the device, radio and browser need to wake up. The coalescing can be across origins, and even coalesced across the OS with native synchronizations. Although the event timings are coalesced, you still get an event per pending sync registration.
 
 
 
