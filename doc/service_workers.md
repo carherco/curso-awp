@@ -61,7 +61,6 @@ Si el fichero descargado es nuevo, se instala.
 
 Una vez instalado, se activa. Si había otro service worker activo, el nuevo debe esperar hasta que deje de haber páginas que utilicen el service worker antiguo. 
 
-
 ## Eventos
 
 - install: se produce justo antes de que el SW termine de instalarse
@@ -71,14 +70,28 @@ Una vez instalado, se activa. Si había otro service worker activo, el nuevo deb
 - sync: se produce cuando se recupera la conexión
 - push: se produce cuando se recibe una notificación push
 
+## Desisntalar un service worker
 
-## Fallos más comunes 
+Para desinstalar un SW, hay que llamar al método **unregister()** del objeto *registration* correspondiente a nuestro SW. Existe un método **getRegistrations()** que nos devuelve todos los registros existentes.
+
+```javascript
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations()
+  .then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister()
+    }
+  })
+}
+```
+
+## Fallos más comunes
 
 - Nuestra aplicación no está en HTTPS
 
 - El path de nuestro service worker no está bien escrito: 
 
-Ejemplo: 
+Ejemplo:
 
 Url del worker: https://mdn.github.io/sw-test/sw.js
 
@@ -97,7 +110,6 @@ Url de registro: /sw-test/sw.js
 - Si la página se ha servico con la cabecera Service-Worker-Allowed, puede estar restringiendo el scope de nuestro SW.
 
 - En Firefox no se permite el uso de SW en navegación privada
-
 
 ## Ejemplos de uso de Service Workers
 
@@ -251,3 +263,6 @@ this.addEventListener('activate', function(event) {
 });
 ```
 
+Podemos ver más ejemplos en:
+
+https://serviceworke.rs/
