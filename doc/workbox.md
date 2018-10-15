@@ -2,7 +2,7 @@
 
 Es una librería para facilitar el trabajo con Service Workers.
 
-## Instalación
+## Instalación
 
 Para "instalarla" hay que importarla en el js de nuestro SW:
 

@@ -6,7 +6,7 @@ Esta interfaz está implementada por el objeto global **navigator**.
 
 **NavigatorOnLine.onLine** Read only: Devuelve un Boolean indicando si el navegador está trabajando online.
 
-## Ejemplo
+## Ejemplo
 
 ```javascript
 this.addEventListener('fetch', function(event) {
