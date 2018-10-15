@@ -1,8 +1,5 @@
 # Sincronización en background
 
-https://github.com/WICG/BackgroundSync/blob/master/explainer.md
-https://ponyfoo.com/articles/backgroundsync
-
 La sinconización es un proceso que se registra en el javascript "normal".
 
 En app.js
@@ -72,3 +69,9 @@ self.addEventListener('periodicsync', function(event) {
   }
 });
 ```
+
+## Enlaces de interés:
+
+https://github.com/WICG/BackgroundSync/blob/master/explainer.md
+
+https://ponyfoo.com/articles/backgroundsync
