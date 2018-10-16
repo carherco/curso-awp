@@ -1,14 +1,3 @@
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/carlos/curso-awp/ejercicios/sync/sw.js')
-  .then(function(reg) {
-    // registration worked
-    console.log('Registration succeeded. Scope is ' + reg.scope);
-  }).catch(function(error) {
-    // registration failed
-    console.log('Registration failed with ' + error);
-  });
-}
-
 function syncIfNeeded(event) {
   //
 }
@@ -23,15 +12,28 @@ window.addEventListener('offline', switchToOffline);
 var db_name = 'dbName';
 var db;
 var store;
+var next_id = 1;
+
+//window.addEventListener('load',function(){
+  
 
 $(function(){
 
-  var DBOpenRequest = window.indexedDB.open(db_name, 5);
+  navigator.serviceWorker.register('/carlos/curso-awp/ejercicios/sync_resuelto/sw.js').then(function(reg) {
+    return reg.sync.getTags();
+  }).then(function(tags) {
+    if (tags.includes('syncTest')) console.log("There's already a background sync pending");
+  }).catch(function(err) {
+    console.log(err.message);
+  });
+
+  var DBOpenRequest = window.indexedDB.open(db_name, 7);
 
   DBOpenRequest.onsuccess = function(event) {
     console.log('[onsuccess]', DBOpenRequest.result);
     db = event.target.result; 
   };
+
   DBOpenRequest.onerror = function(event) {
     console.log('[onerror]', DBOpenRequest.error);
   };
@@ -42,6 +44,20 @@ $(function(){
   };
 
   $('#submit_button').click(function(event){
+
+    console.log('click');
+    navigator.serviceWorker.ready.then(function(reg) {
+      console.log('sw ready');
+      return reg.sync.register('syncTest');
+    }).then(function() {
+      console.log('Sync registered');
+    }).catch(function(err) {
+      console.log('It broke');
+      console.log(err.message);
+    });
+
+
+
     if($('#text_message').val()) {
 
       if(navigator.onLine) {
@@ -52,13 +68,21 @@ $(function(){
           $('#text_message').val('');
         });
       } else { 
-        var newMessage = { message: $('#text_message').val()};
+        navigator.serviceWorker.ready.then(function(reg) {
+          return reg.sync.register('syncTest');
+        }).then(function() {
+          log('Sync registered');
+        }).catch(function(err) {
+          log('It broke');
+          log(err.message);
+        });
+        var newMessage = { id: next_id++, message: $('#text_message').val()};
 
         // Inicia una transacción de lectura/escritura db transaction, lista para agregar los datos
         var transaction = db.transaction(["pendingMessages"], "readwrite");
 
         // Crea una almacén de objetos en la transacción
-        var objectStore = transaction.objectStore(store);
+        var objectStore = transaction.objectStore("pendingMessages");
 
         // Agrega nuestro objeto newItem al almacén de objetos
         var objectStoreRequest = objectStore.add(newMessage);
@@ -69,8 +93,10 @@ $(function(){
           $('#text_message').val('');
         };
 
+
       }
     }
     
   });
+
 });

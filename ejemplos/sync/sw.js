@@ -1,5 +1,3 @@
 self.addEventListener('sync', function(event) {
-  console.log('sync');
-  console.log(event);
+  self.registration.showNotification("Sync event fired!");
 });
-
