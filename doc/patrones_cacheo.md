@@ -66,7 +66,7 @@ Este patrón se puede utilizar cuando queremos ofrecer al usuario siempre el con
 event.respondWith( function() {
     fetch(event.request)
     .then( fetchResponse => {
-        caches.open('v1').then( cache => {
+        return caches.open('v1').then( cache => {
             if(!fetchResponse.ok)
                     return cache.match(event.request)
                 else {
@@ -99,3 +99,4 @@ event.respondWith( function() {
 });
 ```
 
+Workbox: https://developers.google.com/web/tools/workbox/
