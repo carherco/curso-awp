@@ -211,8 +211,8 @@ this.addEventListener('fetch', function(event) {
       return resp || fetch(event.request).then(function(response) {
         caches.open('v1').then(function(cache) {
           cache.put(event.request, response.clone());
+          return response;
         });
-        return response;
       });
     }).catch(function() {
       return new Response('<html><body>Sorry for de inconvenience</body></html>');
