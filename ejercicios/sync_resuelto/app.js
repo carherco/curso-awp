@@ -9,11 +9,40 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+function syncIfNeeded(event) {
+  //
+}
+
+function switchToOffline(event) {
+  //
+}
+
+window.addEventListener('online', syncIfNeeded);
+window.addEventListener('offline', switchToOffline);
+
+var db_name = 'dbName';
+var db;
+var store;
+
 $(function(){
+
+  var DBOpenRequest = window.indexedDB.open(db_name, 5);
+
+  DBOpenRequest.onsuccess = function(event) {
+    console.log('[onsuccess]', DBOpenRequest.result);
+    db = event.target.result; 
+  };
+  DBOpenRequest.onerror = function(event) {
+    console.log('[onerror]', DBOpenRequest.error);
+  };
+
+  DBOpenRequest.onupgradeneeded = function(event) {
+    var db = event.target.result;
+    store = db.createObjectStore('pendingMessages', {keyPath: 'id'});
+  };
 
   $('#submit_button').click(function(event){
     if($('#text_message').val()) {
-
 
       if(navigator.onLine) {
         $.post('post_message.json',$('#text_message').val()).then(function(response){
@@ -23,13 +52,23 @@ $(function(){
           $('#text_message').val('');
         });
       } else { 
-        let messages = localStorage.getItem('messages');
-        if(!messages) {
-          messages = [];
-        }
-        messages.push($('#text_message').val());
-        localStorage.setItem('messages',messages); //No guarda array, guarda strings separados por comas.
-        $('#text_message').val('');
+        var newMessage = { message: $('#text_message').val()};
+
+        // Inicia una transacción de lectura/escritura db transaction, lista para agregar los datos
+        var transaction = db.transaction(["pendingMessages"], "readwrite");
+
+        // Crea una almacén de objetos en la transacción
+        var objectStore = transaction.objectStore(store);
+
+        // Agrega nuestro objeto newItem al almacén de objetos
+        var objectStoreRequest = objectStore.add(newMessage);
+
+        objectStoreRequest.onsuccess = function(event) {
+          //Informa sobre el éxito de nuestro nuevo elemento en la base de datos
+          console.log('Elemento añadido');
+          $('#text_message').val('');
+        };
+
       }
     }
     

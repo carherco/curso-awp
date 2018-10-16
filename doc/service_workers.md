@@ -65,7 +65,7 @@ Una vez instalado, se activa. Si había otro service worker activo, el nuevo deb
 
 - install: se produce justo antes de que el SW termine de instalarse
 - activate: se produce justo antes de que el SW termine de activarse
-- message: 
+- message: para intercambiar mensajes con el javascript principal
 - fetch: se produce cada vez que el navegador realiza una petición
 - sync: se produce cuando se recupera la conexión
 - push: se produce cuando se recibe una notificación push
@@ -262,6 +262,20 @@ this.addEventListener('activate', function(event) {
   );
 });
 ```
+
+### Intercambiar mensajes con los clientes
+
+```javascript
+self.addEventListener('message', function(event){
+    console.log("SW Received Message: " + event.data);
+});
+```
+
+```javascript
+navigator.serviceWorker.controller.postMessage("Client 1 says '"+msg+"'");
+```
+
+
 
 Podemos ver más ejemplos en:
 
