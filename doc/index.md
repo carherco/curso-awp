@@ -9,6 +9,7 @@
     - [Patrones de cacheo](patrones_cacheo.md)
     - [Notificaciones](notificaciones.md)
     - [Notificaciones Push](notificaciones_push.md)
+    - [Sincronización en background](sync.md)
 - Herramienta de auditoría Lighthouse de Google
 
 ## Apis involucradas
