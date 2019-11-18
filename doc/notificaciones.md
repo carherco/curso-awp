@@ -23,11 +23,9 @@ https://developer.mozilla.org/es/docs/Web/API/notification
 - Están asociadas a un Service Worker.
 - Tienen las mismas propiedades que las no persistentes, más una adicional: “actions”.
 
-Estas notificaciones se gestionan desde un Service Worker,
-por lo que el contexto será el del worker.
+Estas notificaciones se gestionan desde un Service Worker, por lo que el contexto será el del worker.
 
-Para crear y mostrar una notificación hay que llamar al método
-.showNotification del .registration del worker.
+Para crear y mostrar una notificación hay que llamar al método .showNotification del .registration del worker.
 
 ```javascript
 self.registration.showNotification('Título de la notificación’, {
@@ -55,7 +53,7 @@ self.registration.showNotification('Título de la notificación’, {
 - timestamp: timestamp de la notificación
 - actions (sólamente las persistentes)
 
-## Eventos
+## Eventos
 
 - onclick
 - onerror
@@ -71,7 +69,7 @@ self.registration.showNotification('Título de la notificación’, {
 setTimeout(notification.close.bind(notification), 4000);
 ```
 
-## Permisos
+## Permisos
 
 Notification.permission devuelve una cadena que representa el permiso actual para mostrar notificaciones. 
 

@@ -5,16 +5,20 @@ La sinconización es un proceso que se registra en el javascript "normal".
 En app.js
 
 ```javascript
-navigator.serviceWorker.ready.then(function(registration) {
-  registration.sync.register('some-tag').then(function() {
-    // registration succeeded
-  }, function() {
-    // registration failed
+if ('serviceWorker' in navigator && 'SyncManager' in window) {
+  navigator.serviceWorker.ready.then(function(registration) {
+    registration.sync.register('some-tag').then(function() {
+      // registration succeeded
+    }, function() {
+      // registration failed
+    });
   });
-});
+}
 ```
 
-Una vez registrado, CADA vez que el navegador crea que ha recuperado la conexión, disparará el evento **sync** del entorno de los service worker.
+Al registrar una sincronización:
+- Si el navegador tiene conexión, se lanza el evento **sync** del service worker al momento.
+- Si el navegador no tiene conexión, el evento **sync** del service worker queda pendiente y se lanzará cuando el navegador recupere la conexión.
 
 En el service worker:
 
@@ -72,6 +76,6 @@ self.addEventListener('periodicsync', function(event) {
 
 ## Enlaces de interés:
 
-https://github.com/WICG/BackgroundSync/blob/master/explainer.md
+- https://developers.google.com/web/updates/2015/12/background-sync
 
-https://ponyfoo.com/articles/backgroundsync
+- https://ponyfoo.com/articles/backgroundsync

@@ -22,7 +22,7 @@ Los service workers interceptan TODAS las peticiones que realiza el navegador y 
 
 Es por esto que su gran utilidad es que la web funcione incluso cuando no haya conexión a internet.
 
-## Registro de un service worker
+## Registro de un service worker
 
 Un service worker debe ser registrado con javascript.
 
@@ -57,7 +57,7 @@ Una vez registrado, el service worker pasará por los siguientes estados:
 
 Un Service Worker se descarga tan pronto como es registrado. Además, el navegador debe volver a descargarlo al menos cada 24 horas.
 
-Si el fichero descargado es nuevo, se instala.
+Si el fichero es descargado es nuevo, se instala.
 
 Una vez instalado, se activa. Si había otro service worker activo, el nuevo debe esperar hasta que deje de haber páginas que utilicen el service worker antiguo. 
 
@@ -107,7 +107,7 @@ Url de registro: /sw-test/sw.js
 
 - El scope de un service worker no puede ser mayor que su propia ubicación.
 
-- Si la página se ha servico con la cabecera Service-Worker-Allowed, puede estar restringiendo el scope de nuestro SW.
+- Si la página se ha servido con la cabecera Service-Worker-Allowed, puede estar restringiendo el scope de nuestro SW.
 
 - En Firefox no se permite el uso de SW en navegación privada
 
@@ -127,6 +127,10 @@ this.addEventListener('fetch', function(event) {
   event.respondWith(new Response('<h1>Estás sin conexión</h1>', {headers: { 'Content-Type': 'text/html'}}));
 });
 ```
+
+El listener de *fetch* SIEMPRE debe llamar a event.respondWith().
+
+event.respondWith necesita un objeto Response o un objeto Promise que se resuelva con un objeto Response.
 
 ### Dar una respuesta cuando no hay red
 
@@ -162,6 +166,10 @@ this.addEventListener('install', function(event) {
   );
 });
 ```
+
+El listener de *install* SIEMPRE debe llamar a event.waitUntil().
+
+waitUntil necesita una promesa. Cuando se resuelva la promesa el service worker terminará su proceso de instalación.
 
 ### Responder con un recurso cacheado
 
@@ -263,6 +271,52 @@ this.addEventListener('activate', function(event) {
 });
 ```
 
+
+### self.skipWaiting() y self.clients.claim()
+
+El service worker actualizado puede tomar el control inmediatamente si nuestro evento install finaliza con self.skipWaiting() y el evento activate finaliza con self.clients.claim(). 
+
+```javascript
+this.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open('v2').then(function(cache) {
+      return cache.addAll([
+        '/sw-test/',
+        '/sw-test/index.html',
+        '/sw-test/style.css',
+        '/sw-test/app.js',
+        '/sw-test/image-list.js',
+        //...
+      ]);
+    })
+  );
+
+  self.skipWaiting();
+});
+```
+
+```javascript
+this.addEventListener('activate', function(event) {
+  var cacheWhitelist = ['v2'];
+
+  event.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if (cacheWhitelist.indexOf(key) === -1) {
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
+
+  self.clients.claim();
+});
+```
+
+
+
+Sin esos, el service worker anterior continuaría controlando la página siempre que haya una pestaña abierta en la página.
+
 ### Intercambiar mensajes con los clientes
 
 ```javascript
@@ -275,8 +329,10 @@ self.addEventListener('message', function(event){
 navigator.serviceWorker.controller.postMessage("Client 1 says '"+msg+"'");
 ```
 
+## Enlaces de interés
 
-
-Podemos ver más ejemplos en:
-
-https://serviceworke.rs/
+- Documentación: https://www.w3.org/TR/service-workers-1/
+- Ciclo de vida: https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
+- Ejemplos: 
+  - https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker
+  - https://serviceworke.rs/

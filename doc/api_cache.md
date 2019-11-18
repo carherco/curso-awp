@@ -19,7 +19,7 @@ Lo tenemos disponible en la variable global *caches*.
 - **has('cacheName')**: Devuelve una Promise que se resuelve con *true* si existe un objeto con dicho nombre.
 - **delete('cacheName')**: Devuelve una Promise que se resuelve con *true* si existe el objeto Cache indicado. Dicho objeto se elimina. La promesa resuelve con *false* si no existe el objeto.
 - **keys()**: Devuelve una Promise que se resuelve con un array de strings correspondientes a todos los objetos Cache.
-- **match(request)**: Comprueba si la Request es una clave en alguno de los objetos Cache de este CacheStorage y devuelve una Promise que resuelve a *true* o a *false*.
+- **match(request)**: Comprueba si la Request es una clave en alguno de los objetos Cache de este CacheStorage y devuelve una Promise que resuelve con la respuesta asociada al objeto encontrado en la cache.
 
 ### Cache
 

@@ -162,6 +162,8 @@ Los valores posibles son:
 - landscape-primary
 - landscape-secondary
 
+https://www.w3.org/TR/screen-orientation/#screen-orientation-types-and-locks
+
 ### background_color
 
 Color de fondo de la pantalla de carga. La pantalla de carga es la pantalla que aparece mientras se carga la web.
@@ -271,7 +273,7 @@ https://www.globalratings.com/for-developers.aspx
 
 ## Install Prompt (Baner de instalación)
 
-No podemos elegir cuándo se mostrará al usuario.
+No podemos elegir cuándo se mostrará al usuario el banner de instalación.
 
 Necesitamos cumplir una serie de requisitos. CADA NAVEGADOR TIENE SUS PROPIAS NORMAS
 
@@ -309,6 +311,8 @@ Como es el browser el que decide cuándo mostará el banner, quizás no lo haga 
 
 ```javascript
 // Podemos cancelar el evento y guardarlo en una variable global
+let promptEvent; 
+
 window.addEventListener("beforeinstallprompt", event => {
   event.preventDefault();
   promptEvent = event;
@@ -320,10 +324,17 @@ if(promptEvent !== undefined) {
   promptEvent.prompt();
   promptEvent.userChoice.then(choice => {
     console.log(choice.outcome);
+    if (choice.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = undefined;
   });
 }
 ```
 
+- https://developers.google.com/web/fundamentals/app-install-banners/#mini-info-bar
 
 ## Testeo del archivo manifest
 
@@ -331,7 +342,28 @@ if(promptEvent !== undefined) {
 - Con un emulador
 - Con herramientas de desarrollo de los navegadores
 
+## Safari en iOS
+
+Safari en iOS no admite el manifiesto de aplicación web (todavía), por lo que deberás agregar etiquetas meta tradicionales al <head> de tu archivo index.html :
+
+```html
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="PWA Clima">
+<link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
+```
+
+## Cómo detectar si se ha accedido a la web desde la app instalada
+
+Si nos interesa saber en css o en javascript si un usuario ha accedido a la web desde el navegador o haciendo click en el icono de la app instalada, tenemos las técnicas que se cuentan en este enlace:
+
+https://developers.google.com/web/fundamentals/app-install-banners/#detect-mode
 
 ## Desinstalación de la app
 
 Los dispositivos deben proporcionar al usuario un método para desinstalar la app.
+
+Enlaces de interés:
+- https://www.w3.org/TR/appmanifest
+- https://caniuse.com/#feat=web-app-manifest
+- https://github.com/w3c/manifest/wiki/Categories

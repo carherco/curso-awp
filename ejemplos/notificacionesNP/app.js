@@ -15,12 +15,12 @@ function mostrarNotificacion() {
     Notification.requestPermission();
   else {
     var notification = new Notification('Título de la notificación', {
-      icon: './logo.jpg',
+      icon: 'logo.svg',
       body: "Este es el cuerpo de la notificación",
     });
 
     notification.onclick = function () {
-      window.open("https://openwebinars.net/");      
+      window.open("https://espublico.tech/");      
     };
 
   }

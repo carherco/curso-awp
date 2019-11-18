@@ -1,4 +1,4 @@
-var version = 'v2';
+var version = 'v1';
 
 // Instalación: Creamos una caché para nuestro SW y cacheamos todos los assets.
 self.addEventListener('install', function(event) {

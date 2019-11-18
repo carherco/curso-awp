@@ -1,6 +1,5 @@
 # API Fetch
 
-
 - Living Standard
 - Basada en Promesas
 - Disponible en window y en worker
@@ -9,8 +8,6 @@ Página oficial: https://fetch.spec.whatwg.org/
 
 Soporte en Navegadores: https://developer.mozilla.org/es/docs/Web/API/Fetch_API
 
-
-
 ## Conceptos
 
 - Request
@@ -18,9 +15,6 @@ Soporte en Navegadores: https://developer.mozilla.org/es/docs/Web/API/Fetch_API
 - Headers
 - Body
 - Método fecth()
-
-
-
 
 ### Request
 
@@ -37,7 +31,6 @@ Soporte en Navegadores: https://developer.mozilla.org/es/docs/Web/API/Fetch_API
 - integrity
 - cache
 - clone()
-
 
 ### Response
 

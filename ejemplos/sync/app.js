@@ -7,7 +7,7 @@ window.addEventListener('load',function(){
       console.log(msg);
     }
 
-    navigator.serviceWorker.register('/carlos/curso-awp/ejemplos/sync/sw.js').then(function(reg) {
+    navigator.serviceWorker.register('./sw.js').then(function(reg) {
       return reg.sync.getTags();
     }).then(function(tags) {
       if (tags.includes('syncTest')) log("There's already a background sync pending");
