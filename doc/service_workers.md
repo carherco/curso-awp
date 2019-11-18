@@ -18,7 +18,7 @@ https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API
 
 Los service workers interceptan TODAS las peticiones que realiza el navegador y pueden manipularlas a su antojo y emitir la respuesta original u otra respuesta distinta. 
 
-![Imagen Service Worker](images/sw.png)
+![Imagen Service Worker](./images/sw.png)
 
 Es por esto que su gran utilidad es que la web funcione incluso cuando no haya conexión a internet.
 
