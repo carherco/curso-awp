@@ -139,6 +139,7 @@ event
 - Mostar la notificación
 - Gestionar el evento click
 
+```js
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push recibido.');
   console.log(`[Service Worker] Contenido del push: "${event.data.text()}"`);
@@ -152,6 +153,7 @@ self.addEventListener('push', function(event) {
 
   event.waitUntil(self.registration.showNotification(title, options));
 });
+```
 
 
 ## Enlaces de interés

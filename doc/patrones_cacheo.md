@@ -70,7 +70,7 @@ event.respondWith( function() {
             if(!fetchResponse.ok)
                     return cache.match(event.request)
                 else {
-                    caches.put(event.request, fetchResponse.clone())
+                    cache.put(event.request, fetchResponse.clone())
                     return fetchResponse;
                 }
             })
