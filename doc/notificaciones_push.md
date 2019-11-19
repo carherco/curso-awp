@@ -20,14 +20,44 @@ Configurar Push - Paso 1
 Nuestro servidor tiene que servir una página con un VAPID key con parte pública y privada
 https://datatracker.ietf.org/doc/rfc8292/
 
+https://web-push-codelab.glitch.me/
+
+```js
+const applicationServerPublicKey = '<Your Public Key>';
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+  console.log('Service Worker and Push is supported');
+
+  navigator.serviceWorker.register('sw.js')
+  .then(function(swReg) {
+    console.log('Service Worker is registered', swReg);
+
+    swRegistration = swReg;
+  })
+  .catch(function(error) {
+    console.error('Service Worker Error', error);
+  });
+} else {
+  console.warn('Push messaging is not supported');
+}
+``` 
 
 Configurar Push - Paso 2
 
 Ver si ya estamos suscritos
 
 ```js
-sw.pushManager.getSubscription().then( subscription => { } );
-````
+  swRegistration.pushManager.getSubscription()
+  .then(function(subscription) {
+    isSubscribed = !(subscription === null);
+
+    if (isSubscribed) {
+      console.log('User IS subscribed.');
+      updateSubscriptionOnServer(subscription);
+    } else {
+      console.log('User is NOT subscribed.');
+    }
+  });
+```
 
 El objeto subscription tiene las propiedades siguientes:
 
@@ -43,14 +73,31 @@ El objeto subscription tiene las propiedades siguientes:
 
 Configurar Push - Paso 3
 
-Solicitar permiso al usuario para recibir notificaciones:
+Suscribir (solicitando permiso al usuario) para recibir notificaciones:
 
 ```js
-sw.pushManager.subscribe({
+const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+swRegistration.pushManager.subscribe({
   userVisibleOnly: true,
-  applicationServerKey: urlBase64ToUint8Array(publicKey)
-}).then( suscription => … );
+  applicationServerKey: applicationServerKey
+})
+.then(function(subscription) {
+  console.log('User is subscribed:', subscription);
+  updateSubscriptionOnServer(subscription);
+  isSubscribed = true;
+})
+.catch(function(err) {
+  console.log('Failed to subscribe the user: ', err);
+  updateBtn();
+});
 ```
+
+Llamar a subscribe() devuelve una promesa que se resolverá después de los siguientes pasos:
+
+ - El usuario ha otorgado servicio para mostrar notificaciones.
+ - El navegador ha enviado una solicitud de red a un servicio push para obtener los detalles para generar una PushSubscription.
+
+La promesa subscribe() se resolverá con una **PushSubscription** si estos pasos terminaron con éxito. Si el usuario no otorga permiso o si hay algún problema en la suscripción del usuario, la promesa se rechazará con un error.
 
 Configurar Push - Paso 4
 
@@ -91,6 +138,21 @@ nuestra aplicación
 event
 - Mostar la notificación
 - Gestionar el evento click
+
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push recibido.');
+  console.log(`[Service Worker] Contenido del push: "${event.data.text()}"`);
+
+  const title = 'Push Codelab';
+  const options = {
+    body: '¡Funciona!',
+    icon: 'images/icon.png',
+    badge: 'images/badge.png'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
 
 ## Enlaces de interés
 

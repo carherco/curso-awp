@@ -99,4 +99,6 @@ event.respondWith( function() {
 });
 ```
 
-Workbox: https://developers.google.com/web/tools/workbox/
+- Workbox: https://developers.google.com/web/tools/workbox/
+- Workbox: Estrategias preconfiguradas: https://developers.google.com/web/tools/workbox/guides/route-requests#handling_a_route_with_a_workbox_strategy
+- Workbox: Ejemplos: https://developers.google.com/web/tools/workbox/guides/common-recipes
