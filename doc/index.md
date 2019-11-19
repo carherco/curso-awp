@@ -57,9 +57,11 @@ Contenido del curso
 - Sincronización puntual
 - Sincronización periódica
 
-[Módulo 8: Librerías y Herramientas](auditoria.md)
-- Librerías de javascript que implementan AWP
-- Herramienta de auditoría Lighthouse de Google
+[Módulo 8: Mensajes](messages.md)
+
+Módulo 9: Librerías y Herramientas
+- [Librerías de javascript que implementan AWP](workbox.md)
+- [Herramienta de auditoría Lighthouse de Google](auditoria.md)
 
 ## Apis involucradas
 
