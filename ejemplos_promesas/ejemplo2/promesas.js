@@ -41,11 +41,6 @@ function testPromise() {
 }
 
 $( document ).ready(function() {
-  if ("Promise" in window) {
     let btn = document.getElementById("btn");
-    btn.addEventListener("click",testPromise);
-  } else {
-    log = document.getElementById('log');
-    log.innerHTML = "Tu navegador no soporta Promesas.";
-  }    
+    btn.addEventListener("click",testPromise);    
 });

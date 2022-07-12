@@ -2,7 +2,7 @@
 $( document ).ready(function() {
     console.log('Antes de la petición');
     
-    let promise = $.get('https://reqres.in/api/users')
+    let promise = $.get('https://reqres.in/api/users');
     
     promise.then( (respuesta) => {
             console.log('dentro del primer then');

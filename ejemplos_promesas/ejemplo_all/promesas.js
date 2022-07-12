@@ -17,8 +17,8 @@ $( document ).ready(function() {
     });
 
     var p5 = new Promise((resolve, reject) => {
-        // reject("promesa 5 fallida");
-        resolve("promesa 5 ha ido bien");
+        reject("promesa 5 fallida");
+        //resolve("promesa 5 ha ido bien");
     });
 
     Promise.all([p1, p2, p3, p4, p5]).then(values => { 
